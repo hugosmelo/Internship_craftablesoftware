@@ -1,0 +1,111 @@
+% --- Packages ---
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm} % Standard professional margins
+\usepackage{graphicx} % For inserting figures
+\usepackage{booktabs} % For beautiful tables
+\usepackage{listings} % For code snippets
+\usepackage{xcolor}   % For code highlighting colors
+\usepackage{fontspec} % Required to use custom system fonts like Consolas
+\usepackage{hyperref} % For clickable links and references
+\usepackage{lipsum}   % Can be removed (used here for placeholder text)
+\usepackage{array}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds}
+
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+
+% --- Visual Studio Dark Theme Colors ---
+\definecolor{vsBackground}{HTML}{1E1E1E}  % Dark background
+\definecolor{vsText}{HTML}{D4D4D4}        % Light gray default text
+\definecolor{vsKeyword}{HTML}{569CD6}     % Blue for keywords (public, class, private)
+\definecolor{vsType}{HTML}{4EC9B0}        % Teal for Types/Classes (LLMRepository)
+\definecolor{vsInterface}{HTML}{B8D7A3}   % Light green for Interfaces (ILLMRepository)
+\definecolor{vsString}{HTML}{D69D85}      % Terracotta/Brown for strings ("LLMApiKey")
+\definecolor{vsComment}{HTML}{57A64A}     % Green for comments
+\definecolor{vsNumber}{HTML}{B5CEA8}      % Light green for numbers (1000, 60)
+\definecolor{vsLineNum}{HTML}{2B91AF}     % Muted teal for line numbers
+
+% --- Setup the Code Font ---
+% Consolas is a proprietary Microsoft font. If compiling on Overleaf, 
+% you can use 'Courier New' or upload a Consolas .ttf file, or use 'Fira Code'.
+\newfontfamily\vsCodeFont[
+    Path=fonts/,
+    Extension=.TTF,
+    Scale=0.9
+]{CASCADIAMONO} % Loading Consolas from fonts directory
+
+% --- Define C# Language with Common Keywords ---
+\lstdefinelanguage{CSharp}[Sharp]{C}{
+    morekeywords={
+        abstract, as, base, break, case, catch, checked, class, const, continue,
+        default, delegate, do, else, enum, event, explicit, extern, false, finally,
+        fixed, for, foreach, goto, if, implicit, in, interface, internal, is, lock,
+        namespace, new, null, object, operator, out, override, params, private,
+        protected, public, readonly, ref, return, sealed, sizeof, stackalloc, static,
+        string, struct, switch, this, throw, true, try, typeof, unchecked, unsafe,
+        using, virtual, void, volatile, while, async, await, var, dynamic, yield,
+        get, set, value, where, select, from, let, orderby, group, join, into
+    },
+    % Common .NET types - automatically colored as types
+    morekeywords=[2]{
+        String, Int32, Int64, Boolean, Double, Float, Decimal, Byte, Char, Object,
+        Task, List, Dictionary, IEnumerable, ICollection, IList, IDictionary,
+        HttpClient, HttpResponseMessage, HttpRequestException, StringBuilder,
+        DateTime, TimeSpan, Guid, Exception, ArgumentException, InvalidOperationException
+    },
+    % Add your custom interfaces here - they'll be colored differently
+    morekeywords=[3]{
+        ILLMRepository, IRepository, IService, IDisposable
+    },
+    % Add your custom classes here
+    morekeywords=[4]{
+        LLMRepository, Policy
+    },
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morecomment=[s][keywordstyle]{[}{]}, % Attributes
+    morestring=[b]",
+}
+
+% --- Apply Visual Studio Theme Settings ---
+\lstset{
+    language=CSharp,
+    backgroundcolor=\color{vsBackground},   
+    basicstyle=\vsCodeFont\small\color{vsText},
+    commentstyle=\color{vsComment}\itshape,
+    keywordstyle=\color{vsKeyword},          % Blue for keywords
+    keywordstyle=[2]\color{vsType},          % Teal for .NET types
+    keywordstyle=[3]\color{vsInterface},     % Light green for interfaces
+    keywordstyle=[4]\color{vsType},          % Teal for custom classes
+    stringstyle=\color{vsString},
+    numberstyle=\tiny\color{vsLineNum},
+    % Structural layout
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=8pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    frame=single,
+    rulecolor=\color{vsBackground}
+}
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=cyan,
+}

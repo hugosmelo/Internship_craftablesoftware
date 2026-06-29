@@ -1,0 +1,118 @@
+% ==========================================
+% Architecture Diagram - TikZ
+% Add to preamble:
+%   \usepackage{tikz}
+%   \usepackage{xcolor}
+%   \usetikzlibrary{arrows.meta, positioning, fit, backgrounds}
+% ==========================================
+
+\begin{figure}[ht]
+\centering
+\makebox[\textwidth][c]{
+\begin{tikzpicture}[
+    node distance=0.55cm and 1.4cm,
+    box/.style={
+        rectangle, rounded corners=5pt,
+        minimum width=3.0cm, minimum height=0.7cm,
+        text centered, font=\small\bfseries,
+        draw=black!50, thick, fill=white
+    },
+    fe/.style={box, fill=blue!10, draw=blue!40!black},
+    be/.style={box, fill=green!10, draw=green!40!black},
+    db/.style={box, fill=orange!12, draw=orange!50!black},
+    mg/.style={box, fill=teal!10, draw=teal!40!black},
+    ex/.style={box, fill=gray!10, draw=gray!50, dashed},
+    lbl/.style={font=\tiny, align=center},
+    arr/.style={-{Stealth[length=5pt]}, thick},
+    biarr/.style={{Stealth[length=5pt]}-{Stealth[length=5pt]}, thick},
+]
+
+%% ---- FRONTEND ----
+\node[fe] (ctx)      {Contexts};
+\node[lbl, below=0.0cm of ctx] (ctxlbl) {\tiny User · Location · Connection · Notification};
+\node[fe, below=0.5cm of ctxlbl] (screens)  {Screens \& Components};
+\node[fe, below=0.55cm of screens] (axiosvc) {Service Functions (Axios)};
+
+%% ---- BACKEND ----
+\node[be, right=3.5cm of ctx]           (ctrl) {API Layer (Controllers)};
+\node[be, below=0.55cm of ctrl]         (svc)  {Services};
+\node[be, below=0.55cm of svc]          (repo) {Repositories};
+
+%% ---- DATABASES ----
+\node[db, below left=1.3cm and 0.0cm of repo]  (pg)    {PostgreSQL};
+\node[lbl, below=0.05cm of pg]  {\tiny Users · Walks · Trails\\ POIs · Achievements · Tags};
+
+\node[mg, below right=1.3cm and 0.0cm of repo] (mongo) {MongoDB};
+\node[lbl, below=0.05cm of mongo] {\tiny GeoJSON · Social\\ Notifications · Answers};
+
+%% ---- EXTERNAL SERVICES ----
+\node[ex, right=2.6cm of ctrl]           (gemini) {Sentry};
+\node[ex, below=0.55cm of gemini]        (sentry) {Gemini API};
+\node[ex, below=0.55cm of sentry]        (expo)   {Expo Push};
+
+%% ---- AWS ----
+\node[ex, above=1.33cm of ctrl]           (ecs)    {AWS ECR};
+\node[ex, left=1.83cm of ecs]             (ecr)    {AWS ECS};
+
+%% ---- FRONTEND INTERNAL ARROWS ----
+\draw[biarr, blue!50] (ctx.south) -- (screens.north);
+\draw[biarr, blue!50] (screens.south) -- (axiosvc.north);
+
+%% ---- FE <-> BE ----
+\draw[biarr, black, thick]
+    (axiosvc.east) -- node[above, font=\tiny]{HTTP} (ctrl.west |- axiosvc.east);
+
+%% ---- BACKEND LAYERS ----
+\draw[biarr, green!50!black] (ctrl.south) -- (svc.north);
+\draw[biarr, green!50!black] (svc.south)  -- (repo.north);
+
+%% ---- REPO -> DBS ----
+\draw[biarr, orange!60!black]
+    (repo.south) -- ++(0,-0.4) -| (pg.north);
+\draw[biarr, teal!50!black]
+    (repo.south) -- ++(0,-0.4) -| (mongo.north);
+
+%% ---- BACKEND -> EXTERNAL ----
+\draw[arr, gray!60, dashed]
+    (svc.east) -- ++(1.43,-0.01) |- node[font=\tiny, above left, pos=0.82, text=black]{Polly retry} (sentry.west);
+\draw[arr, gray!60, dashed]
+    (ctrl.east) -- node[font=\tiny, pos=0.55, above, text=black]{exceptions} (gemini.west);
+\draw[arr, gray!60, dashed]
+    (svc.east) -- ++(1.22,-1.28) |- node[font=\tiny, above, pos=0.69, text=black]{push token} (expo.west);
+
+%% ---- CI/CD ----
+\draw[arr, gray!50, dashed, arrows=Stealth-] (ecr.east) -- node[above, font=\tiny, text=black]{deploy} (ecs.west);
+\draw[arr, gray!50, dashed] (3.34,1.71) -- node[font=\tiny, pos=0.31, below left, text=black]{runs} (ctrl.west);
+
+%% ---- BACKGROUND ZONES ----
+\begin{scope}[on background layer]
+    \node[rectangle, rounded corners=7pt,
+          fill=blue!5, draw=blue!25, thick, inner sep=8pt,
+          fit=(ctx)(ctxlbl)(screens)(axiosvc),
+          label={[font=\footnotesize\bfseries, blue!60!black]above:Frontend (React Native / Expo)}]
+          (fezone) {};
+
+    \node[rectangle, rounded corners=7pt,
+          fill=green!5, draw=green!25, thick, inner sep=8pt,
+          fit=(ctrl)(svc)(repo),
+          label={[font=\footnotesize\bfseries, green!60!black]above:Backend (.NET / AWS ECS)}]
+          (bezone) {};
+
+    \node[rectangle, rounded corners=7pt,
+          fill=yellow!5, draw=yellow!50!black, thick, inner sep=10pt,
+          fit=(pg)(mongo),
+          label={[font=\footnotesize\bfseries, yellow!50!black]below:Data Layer}]
+          (dbzone) {};
+
+    \node[rectangle, rounded corners=7pt,
+          fill=gray!5, draw=gray!30, thick, inner sep=8pt,
+          fit=(gemini)(sentry)(expo),
+          label={[font=\footnotesize\bfseries, gray!55]above:External Services}]
+          (exzone) {};
+\end{scope}
+
+\end{tikzpicture}
+}
+\caption{Application architecture: from the user's device to the databases and external services.}
+\label{fig:architecture}
+\end{figure}

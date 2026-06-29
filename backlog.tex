@@ -1,0 +1,596 @@
+% ==========================================
+% 1.3 State of The Art - Software Development
+% ==========================================
+ 
+\vspace*{0.5cm}
+\subsection{State of the Art in Software Development}\label{sub:sota}
+ 
+Modern software development has undergone a structural transformation
+over the past decade, driven by four converging forces: the rise of
+AI-assisted tooling, the maturation of DevOps and CI/CD practices,
+the widespread adoption of cloud-native architectures, and the
+continued evolution of Agile methodologies.
+This section surveys the current state of the art in each of these
+areas, establishing a baseline against which the practices observed
+during the internship are later contrasted in
+Section~\ref{sub:contrast}.
+ 
+ 
+\subsubsection{AI-Assisted Developer Tooling}\label{subsub:sota:ai}
+ 
+The integration of large language models into the software development
+workflow has moved from experimental to mainstream.
+Tools such as GitHub Copilot, powered by OpenAI's Codex, now act as
+context-aware coding assistants, offering real-time code suggestions
+and automating repetitive tasks directly inside the developer's
+IDE~\cite{softjourn2025aidevops}.
+Beyond individual productivity, generative AI has expanded into every
+phase of the development lifecycle: AI-driven requirements synthesis
+and architecture generation at the planning stage, autonomous
+test-case creation during quality assurance, and self-healing anomaly
+detection during maintenance~\cite{cio2026future}.
+ 
+The Perforce \textit{2026 State of DevOps Report}, surveying 820
+technology professionals worldwide, confirms that AI now permeates
+software delivery at scale~\cite{perforce2026devops}.
+It frames AI not as a replacement for DevOps discipline, but as an
+\textit{amplifier} of existing organisational states: 72\,\% of
+leaders in high-maturity DevOps organisations report deeply embedded
+AI practices, compared to just 18\,\% in low-maturity
+counterparts~\cite{perforce2026devops}.
+Despite enthusiasm, governance remains fragile: only 39\,\% of
+organisations maintain fully automated audit trails, and trust in
+AI output is far from universal~\cite{perforce2026devops}.
+A complementary Harness report from March 2026, based on 700
+engineering practitioners across five countries, further cautions that
+AI coding tools have dramatically accelerated code production, but
+the downstream delivery pipeline, encompassing testing, security
+scanning, and deployment, has not kept pace~\cite{harness2026devops}.
+ 
+ 
+\subsubsection{DevOps and Continuous Integration / Continuous
+Delivery}\label{subsub:sota:devops}
+ 
+DevOps has become the default operating model for software delivery
+organisations. In 2026 the field is characterised by three prominent
+evolutions:
+ 
+\begin{itemize}
+    \item \textbf{AI-augmented operations (AIOps).}
+    AI is embedded in monitoring, incident management, and deployment
+    pipelines. Predictive analytics identify failure patterns before
+    incidents occur, while self-healing systems detect anomalies and
+    apply automated remediations without human
+    intervention~\cite{devopsdotcom2025}. Gartner projects that
+    73\,\% of enterprises will be implementing or planning AIOps
+    adoption by end of 2026~\cite{fullstack2026aidevops}.
+ 
+    \item \textbf{DevSecOps and shift-left security.}
+    Security is integrated throughout the CI/CD pipeline rather than
+    validated at the end. Automated vulnerability scanning and static
+    application security testing (SAST) run on every commit, making
+    security a shared responsibility across development, operations,
+    and security teams~\cite{graphite2025}. As of 2026, 97\,\% of
+    organisations report using or planning to use AI in the software
+    delivery lifecycle, making AI governance a critical component of
+    any DevSecOps strategy~\cite{devsecops2026}.
+ 
+    \item \textbf{Platform engineering and GitOps.}
+    GitOps treats the Git repository as the single source of truth
+    for infrastructure state. Gartner predicts that 80\,\% of
+    software development companies will adopt Internal Developer
+    Platforms by 2026 to unify tooling, automate governance, and
+    accelerate delivery at scale~\cite{fullstack2026aidevops}.
+    Yet the Harness 2026 report finds that 73\,\% of engineering
+    leaders say hardly any development teams have standardised
+    templates or golden paths for services and pipelines, indicating
+    that adoption and maturity remain
+    uneven~\cite{harness2026devops}.
+\end{itemize}
+ 
+The Perforce 2026 report introduces a sharp operational divide: mature
+organisations are 36\,\% more likely to automate the majority of
+deployments from commit to production, and 66\,\% more likely to
+respond very effectively to production incidents using automated
+rollbacks~\cite{perforce2026devops}. This underscores that
+the value of DevOps investments is increasingly contingent on
+organisational maturity rather than tool adoption alone.
+ 
+ 
+\subsubsection{Cloud-Native Architectures and
+Microservices}\label{sec:sota:cloud}
+ 
+Cloud-native development has transitioned from competitive advantage
+to operational baseline.
+The 2025 CNCF Annual Cloud Native Survey, published in January 2026
+and covering 628 IT professionals across industries, reports that
+98\,\% of organisations now use some form of cloud-native technology,
+and 82\,\% of container users run Kubernetes in production, up from
+66\,\% in 2023~\cite{cncf2026survey}.
+Kubernetes now functions as the common denominator for AI
+workloads as well: 66\,\% of organisations hosting generative AI
+models use Kubernetes to manage some or all of their inference
+workloads~\cite{cncf2026survey}.
+ 
+The architectural centrepiece of this paradigm remains the
+decomposition of monolithic applications into small, loosely coupled
+\textit{microservices}, each independently deployable and scalable.
+Looking ahead, 84\,\% of enterprises expect to build at least half
+of their new applications on Kubernetes within five years, signalling
+a clear transition towards container-first development
+models~\cite{portworx2026}.
+A complete cloud-native stack extends beyond Kubernetes to include
+CI/CD pipelines, service meshes (e.g.\ Istio or Linkerd),
+distributed tracing, and platform engineering practices that abstract
+infrastructure complexity from application
+developers~\cite{ini8labs2025}.
+ 
+Resilience patterns, such as Circuit Breaker, Retry with exponential
+backoff, and Health Checks, are now standard design primitives used
+to prevent cascading failures in distributed
+systems~\cite{madrigan2025}.
+ 
+ 
+\subsubsection{Agile Methodologies and Team
+Practices}\label{subsub:sota:agile}
+ 
+Agile practices remain the dominant framework for software project
+management, though their application has matured considerably.
+The Perforce 2026 report identifies DevOps maturity as a
+prerequisite for AI scalability rather than a practice made obsolete
+by it: organisations with disciplined engineering, automation, and
+strong collaboration are the ones scaling AI successfully and
+turning innovation into measurable business
+outcomes~\cite{perforce2026devops}.
+The report frames this as a \textit{shift-up} in roles: 87\,\% of
+respondents believe AI will enable engineers to focus less on
+scripting and more on system design and directing
+outcomes~\cite{perforce2026devops}.
+ 
+Contemporary high-performing engineering organisations combine Agile
+sprints with platform engineering initiatives providing developers
+with self-service golden paths, internal developer portals, and
+standardised toolchains.
+However, the Harness 2026 report reveals a significant gap between
+aspiration and reality: the majority of surveyed developers and their
+managers acknowledge that their current ways of working will not be
+sustainable over the long term, with the figure rising to 81\,\% for
+very frequent users of AI coding tools~\cite{harness2026devops}.
+This tension, between acceleration at the code level and inadequate
+automation downstream, represents the central challenge for Agile
+organisations in 2026.
+ 
+\bigskip
+\noindent
+The practices described above represent the current industry standard
+for well-resourced software organisations in 2025--2026. The
+following section contrasts these benchmarks with the tooling,
+processes, and architectural choices encountered during the
+internship, highlighting both areas of alignment and notable gaps.
+ 
+ 
+% ============================================================
+%  Comparative Internship Practices - Software Development
+% ============================================================
+\vspace*{0.5cm}
+\subsection{Comparative Internship Practices}\label{sub:contrast}
+ 
+The internship project, while built by a small team under no
+client-constraints, intersects with many of those benchmarks in
+meaningful ways and diverges from others in ways that are equally
+instructive.
+The following subsections examine each dimension in turn.
+ 
+ 
+\subsubsection{Architecture and Design Patterns vs. the Cloud-Native
+Paradigm}\label{subsub:contrast:arch}
+ 
+The state of the art favours decomposing applications into
+independently deployable microservices orchestrated by Kubernetes,
+with service meshes handling inter-service communication and
+resilience~\cite{ini8labs2025,madrigan2025}.
+The internship project took a different, yet deliberate, approach:
+a \textit{layered N-Tier architecture} partitioned into discrete
+projects (\texttt{API}, \texttt{Services}, \texttt{Repositories},
+and shared utility layers) running as a single deployable backend
+unit.
+ 
+This is a conscious alignment with the \textit{modular monolith}
+pattern, which many practitioners recognise as a pragmatic
+starting point for teams that have not yet reached the scale that
+justifies the operational overhead of a full microservices
+deployment~\cite{ini8labs2025}.
+The strict separation of concerns enforced by the Repository Pattern
+and Dependency Injection mirrors the loose-coupling principle at the code level, that microservices architecture seeks to achieve at the infrastructure level.
+The use of Factory and Strategy/Handler patterns to replace branching
+logic is likewise consistent with maintainability principles that are
+independent of deployment topology.
+ 
+In terms of container adoption, the project is well-aligned with
+industry practice. The backend is fully containerised: the CI/CD
+pipeline builds a Docker image on every push, tags it with the
+commit hash for traceability, pushes it to \textbf{AWS Elastic
+Container Registry (ECR)}, and deploys it via \textbf{AWS Elastic
+Container Service (ECS)}. This satisfies the core cloud-native
+principle of reproducible, immutable deployments~\cite{cncf2026survey}.
+ 
+The only distinction relative to the state of the art is the choice
+of \textbf{AWS ECS} over \textbf{Kubernetes}. While 82\,\% of
+container users now run Kubernetes in production~\cite{cncf2026survey},
+ECS is a fully managed container orchestration service that handles
+scheduling, scaling, and health management without the operational
+overhead of self-managing a Kubernetes cluster. For a project at this
+scale, ECS represents a pragmatic and legitimate trade-off: it
+delivers the essential benefits of container orchestration while
+reducing infrastructure complexity, a pattern explicitly encouraged
+by the CNCF, which notes that 79\,\% of Kubernetes users themselves
+opt for managed services over self-managed
+clusters~\cite{cncf2026survey}.
+ 
+ 
+\subsubsection{Resilience and Observability vs. Industry
+Standards}\label{subsub:contrast:resilience}
+ 
+The state of the art calls for resilience patterns to be implemented
+as standard design primitives in distributed systems, alongside
+AIOps-driven observability for anomaly detection and
+self-healing~\cite{madrigan2025,devopsdotcom2025}.
+ 
+The internship project demonstrates a solid alignment with the
+resilience dimension: outbound HTTP calls are wrapped in automatic
+retry policies with exponential backoff using the \textbf{Polly}
+library, directly implementing the pattern described in the
+literature. Error observability is addressed through a centralised
+\textbf{Sentry} integration, which provides real-time crash
+reporting and structured error tracking, a practice consistent with
+the industry emphasis on proactive incident
+management~\cite{devopsdotcom2025}.
+ 
+The gap here lies in the scope of observability.
+Industry-leading deployments combine distributed tracing, structured
+logging, and AI-assisted anomaly detection across the full
+application stack. The Perforce 2026 report identifies the absence of
+automated audit trails as a critical governance vulnerability, with
+only 39\,\% of organisations currently maintaining
+them~\cite{perforce2026devops}. The internship implementation covers
+the error layer effectively but does not extend to distributed
+tracing or performance profiling, areas that would become critical as
+the system scales.
+ 
+ 
+\subsubsection{Data Strategy vs. Cloud-Native Data
+Practices}\label{subsub:contrast:data}
+ 
+Modern cloud-native architectures advocate for polyglot persistence,
+choosing the right data store for each workload, as well as managed
+cloud-native database services that abstract operational
+complexity~\cite{techzine2025}.
+The internship project explicitly adopts a \textbf{Polyglot
+Persistence} strategy, combining \textbf{PostgreSQL} for structured
+relational data and \textbf{MongoDB} for semi-structured document
+data, which is a direct application of this principle.
+ 
+The choice of \textbf{Dapper} as a lightweight data-access layer
+over PostgreSQL is a deliberate trade-off: it forgoes the abstraction
+of a full ORM in favour of hand-optimised SQL queries, which aligns
+with the industry guidance to maintain performance efficiency in
+data-intensive paths.
+ 
+ 
+\subsubsection{Frontend Architecture vs. Current Mobile Development
+Practices}\label{sec:contrast:frontend}
+ 
+Cross-platform mobile development using \textbf{React Native} and the
+\textbf{Expo} ecosystem is well-established in the industry, and the
+architectural choices made in the internship project are broadly
+consistent with current best practices.
+The feature-based folder structure, the use of TypeScript for strict
+typing, and the isolation of data-fetching into dedicated service
+functions using \textbf{Axios} all reflect the separation-of-concerns
+principle that underpins modern frontend architecture.
+ 
+The decision to use React's native \textbf{Context API} rather than a
+heavyweight global state manager represents a pragmatic
+fit-for-purpose choice, appropriate for the application's scope and
+consistent with the current community trend of preferring lighter,
+composable state solutions over monolithic state libraries.
+ 
+A notable gap is the \textbf{offline-first} capability.
+Offline-first is increasingly considered a quality baseline for mobile
+applications in the industry, particularly those involving location
+and real-time data. The feature was implemented but subsequently
+broken by upstream library updates from React Native and Expo, and
+moved to the backlog. This outcome illustrates a real and widely
+reported challenge in the React Native ecosystem: the pace of
+framework updates can introduce unplanned regressions, a maintenance
+burden that enterprise teams typically address through stricter
+dependency pinning and automated regression testing in CI/CD
+pipelines~\cite{devopsdotcom2025}.
+ 
+ 
+\subsubsection{CI/CD Maturity and DevOps
+Tooling}\label{subsub:contrast:aidevops}
+ 
+The state of the art positions automated CI/CD pipelines as
+table-stakes for professional software development teams in
+2026~\cite{perforce2026devops,harness2026devops}.
+The internship project presents a mixed but largely encouraging
+picture in this dimension, with a meaningful distinction between the
+backend and frontend repositories.
+ 
+The backend pipeline is a strong alignment with industry practice.
+Implemented in Bitbucket Pipelines, it follows a multi-stage
+structure: feature branches trigger automated tests and a Docker
+image build on every push; merges to \texttt{master} additionally
+promote the image through a full environment pipeline, automatically
+deploying to a \textbf{staging} environment via AWS ECS, and then
+offering a \textbf{manual trigger} for the production deployment.
+This constitutes a complete \textit{CI/CD pipeline with environment
+promotion and a gated production release}, which is precisely the
+pattern recommended for production systems~\cite{perforce2026devops}.
+The commit-tagged Docker images pushed to AWS ECR further provide
+full deployment traceability, enabling rollback to any prior
+revision. The manual gate on production is a deliberate
+human-in-the-loop safety check rather than an absence of automation,
+and is standard practice even in high-maturity
+organisations~\cite{perforce2026devops}.
+ 
+The frontend repository presents a more significant gap: it lacked
+automated tests entirely, meaning the CI safety net that existed on
+the backend had no equivalent on the client side. The Harness 2026
+report identifies the absence of standardised pipelines and
+automated quality gates as one of the primary reasons AI-accelerated
+code production leads to downstream instability~\cite{harness2026devops}.
+While the frontend was not generating code at AI-assisted velocity,
+the underlying risk is the same: without automated regression
+coverage, regressions introduced by dependency updates (such as the
+offline-first breakage described in Section~\ref{sec:contrast:frontend})
+are harder to detect systematically and earlier in the development
+cycle.
+ 
+\newpage
+\subsubsection{Summary}\label{subsub:contrast:summary}
+ 
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} >{\centering\arraybackslash}m{3.2cm}
+                    >{\centering\arraybackslash}m{5.8cm}
+                    >{\centering\arraybackslash}m{5.8cm} @{}}
+\toprule
+\textbf{Dimension} & \textbf{Alignment} & \textbf{Gap} \\
+\midrule
+ 
+Architecture &
+  Layered N-Tier; loose coupling via DI and Repository Pattern;
+  containerised with Docker; deployed via AWS ECS &
+  ECS used instead of Kubernetes; managed service trade-off
+  appropriate for project scale \\
+ 
+Resilience \& Observability &
+  Retry / exponential backoff (Polly); centralised error
+  tracking (Sentry) &
+  No distributed tracing or AI-driven anomaly detection \\
+ 
+Data Strategy &
+  Polyglot persistence (PostgreSQL + MongoDB); optimised
+  queries via Dapper &
+  No managed cloud-native database services \\
+ 
+Frontend &
+  React Native + Expo; TypeScript; feature-based structure;
+  Context API &
+  Offline-first capability regressed and not restored \\
+ 
+CI/CD Maturity &
+  Backend: full CI/CD pipeline with environment promotion
+  (staging auto-deploy, production manual gate), commit-tagged
+  images on AWS ECR, deployed to AWS ECS &
+  Frontend: no automated tests or CI pipeline \\
+ 
+\bottomrule
+\end{tabular}
+\caption{Alignment of internship practices with the state of the art.}
+\label{tab:contrast}
+\end{table}
+ 
+\noindent
+Overall, the internship project demonstrates a strong grasp of
+foundational software engineering principles (clean architecture,
+resilience, and polyglot data management) that are prerequisites for
+any cloud-native or AI-augmented evolution.
+The gaps identified are primarily operational and infrastructural
+rather than conceptual, and represent natural next steps as the
+project and team mature.
+
+
+
+\subsection{Things used}
+\subsubsection{Backend Architecture and Project Structure}
+For the server side, the project uses a classic layered approach (N-Tier architecture) to keep the code clean and separated. Instead of putting everything into one giant folder, the backend is organized into multiple specialized projects, each handling a specific job:
+\begin{itemize}
+    \item \textbf{\texttt{API} (Presentation):} This is the entry point of the application. It handles the RESTful HTTP endpoints (Controllers), custom middlewares, and general configuration settings.
+    \item \textbf{\texttt{Services} (Business Logic):} This layer contains the core rules of the app, data processing logic, and custom data validation classes.
+    \item \textbf{\texttt{Repositories} (Data Access):} This layer is solely responsible for talking to the databases, keeping database queries isolated from the business logic.
+    \item \textbf{\texttt{Models}, \texttt{Shared}, and \texttt{Tests}:} These tiers store the Data Transfer Objects (DTOs), cross-project utility constants, and automated unit tests to ensure code reliability.
+\end{itemize}
+
+\subsubsection{Software Design Patterns Used}
+To make the codebase maintainable and easy to expand during development, several industry-standard design patterns were used:
+\begin{itemize}
+    \item \textbf{Repository Pattern:} Data access is hidden behind interfaces. This means the services don't care how data is saved or retrieved, making it easy to change database mechanics later without breaking the core application.
+    \item \textbf{Dependency Injection (DI):} Objects and services are injected through constructors rather than instantiated manually using the \texttt{new} keyword. Using varying lifecycles (Singleton, Scoped, and Transient), the framework manages memory efficiently and keeps components decoupled.
+    \item \textbf{Factory and Strategy/Handler Patterns:} To handle different actions dynamically, such as triggering different logic for an \texttt{Achievement} versus a \texttt{Walk} notification, the app combines a Factory (\texttt{NotificationFactory}) with specialized handlers. This replaces hard-to-read, hard-to-maintain \texttt{switch/if} blocks.
+    \item \textbf{DTOs and Mappers:} The app uses Data Transfer Objects to define exactly what data goes over the network, ensuring internal domain database structures are never exposed directly to the frontend. Custom mappers are used to easily convert data back and forth between these formats.
+    \item \textbf{Async/Await Pattern:} Every layer consistently uses asynchronous programming using \texttt{Task<T>}. This prevents the server from blocking threads while waiting for slow operations like database queries or network responses, massively increasing how many users the API can handle at once.
+\end{itemize}
+
+\subsubsection{Polyglot Persistence (Databases)}
+This project uses a \textbf{Polyglot Persistence} strategy, meaning it mixes different database types depending on what data needs to be stored, offering the best of both worlds:
+\begin{itemize}
+    \item \textbf{PostgreSQL} is used as the relational database for structured, transactional data. To interact with it quickly, the project uses \textbf{Dapper}, a lightweight library that bridges the gap between relational databases and object oriented code, allowing for writing fast and optimized native SQL queries.
+    \item \textbf{MongoDB} is used as a NoSQL document database to handle more dynamic or semi-structured data fluidly, communicating through the native \texttt{MongoDB.Driver}.
+\end{itemize}
+
+\subsubsection{Resiliency, Monitoring, and Error Handling}
+When an API talks to external cloud services it has to be prepared for network hiccups or rate limits ($429$ errors). The backend implements the \textbf{Resilience Pattern} using a library called \textbf{Polly}. This wraps outbound HTTP requests in automatic retry policies with exponential backoff, making sure transient failures don't crash the app for the user.
+
+Additionally, the project uses a custom \textbf{Middleware} to catch any unhandled crashes globally. It automatically logs these errors and forwards them to a centralized tracking hub called \textbf{Sentry} so developers can debug them in real-time.
+
+\subsubsection{Frontend Mobile Architecture (React Native \& Expo)}
+On the frontend, the client layer is built as a cross-platform mobile app using \textbf{React Native} on top of the \texttt{Expo} ecosystem. The architecture follows a clean, feature-based and functional layout. 
+
+Instead of pulling in a massive, heavy global state manager, the application manages global data using React’s native \textbf{Context API}. State is split into four distinct domains:
+\begin{enumerate}
+    \item \textbf{\texttt{UserContext}:} Handles user authentication and profile sessions.
+    \item \textbf{\texttt{LocationContext}:} Streams and manages real-time GPS coordinates.
+    \item \textbf{\texttt{ConnectionContext}:} Monitors current internet and network status.
+    \item \textbf{\texttt{NotificationContext}:} Manages push notification tokens.
+\end{enumerate}
+
+The frontend's data layer matches the backend's clean separation of concerns. Screen components never fetch data directly; instead, they call isolated service functions built using \textbf{Axios} that return strictly typed TypeScript definitions. Finally, to ensure a smooth user experience, the client implements an \textbf{Offline-First approach}, combining real-time background location tracking with local storage to cache data when the user loses internet connection, but, due to multiple react and expo updates, this feature (which was previously implemented) no longer worked and was sent to the backlog of tasks.
+
+
+% ============================================================
+%  Comparative Internship Practices - Market (to be integrated into Description of Work
+% ============================================================
+\vspace*{0.5cm}
+\subsection{Comparative Internship Practices}\label{sub:contrast}
+ 
+The internship project, while built by a small team under no
+client-constraints, intersects with many of those benchmarks in
+meaningful ways and diverges from others in ways that are equally
+instructive.
+The following subsections examine each dimension in turn.
+
+ 
+\subsubsection{Location-Based Features and Offline-First
+Capability}\label{subsub:contrast:location}
+ 
+The internship application is directly positioned in the
+location-based outdoor exploration space, using real-time GPS
+tracking to trigger trail and POI interactions as users move
+through physical space. This aligns with the industry direction
+described in Section~\ref{subsub:sota:location}, where physical
+presence detection is the core interaction primitive.
+ 
+The most significant gap in this dimension is the \textbf{offline-first}
+capability.
+As noted in Section~\ref{subsub:sota:location}, offline-first
+architecture is considered a baseline expectation for outdoor
+trail applications~\cite{markwide2026hiking}, and the
+internship project did implement this feature.
+However, it was subsequently broken by upstream library updates
+from React Native and Expo and moved to the backlog.
+This outcome illustrates a real and widely reported challenge in
+the React Native ecosystem: the pace of framework updates can
+introduce unplanned regressions, a maintenance burden that
+enterprise teams typically address through stricter dependency
+pinning and automated regression testing in CI/CD
+pipelines~\cite{markwide2026hiking}.
+ 
+ 
+\subsubsection{Gamification Design}\label{subsub:contrast:gamification}
+ 
+The internship application implements a core gamification loop
+centred on points awarded for completing trivia-style activities at
+POIs along trails, with an achievement system tracking user
+milestones.
+This is a direct application of the hybrid reward architecture
+described in Section~\ref{subsub:sota:gamification}: the
+activity-based point system provides intrinsic game progression,
+while the physical trail context grounds the rewards in real-world
+exploration.
+ 
+The design is well-aligned with the academic findings on
+gamification effectiveness~\cite{ama2025gamification}: rewards
+are tied to completing a value-added activity (a trivia question
+about a real POI) rather than arbitrary engagement actions,
+which mitigates the risk of gamification flow decoupling from the
+application's core purpose.
+ 
+A gap relative to the state of the art is the absence of
+\textit{adaptive personalisation}.
+Leading gamification implementations in 2026 use AI-driven
+behavioural data to personalise challenge difficulty, reward
+cadence, and content selection~\cite{amplifai2026gamification}.
+The current system presents uniform content and reward structures
+regardless of user history, which represents a natural area for
+future development as the platform matures.
+ 
+ 
+\subsubsection{LLM API Integration for Trivia
+Generation}\label{subsub:contrast:llm}
+ 
+The internship application integrates a cloud-based LLM API to
+generate trivia questions contextualised to specific POIs along
+each trail.
+This is a direct implementation of the context-grounded prompting
+pattern described in Section~\ref{subsub:sota:llm}: the backend
+supplies the model with structured location context and requests
+a question appropriate to the POI's historical or cultural
+significance.
+ 
+This approach aligns with the current industry best practice for
+content-rich, location-aware applications: rather than
+pre-authoring questions for each POI (which would be
+prohibitively expensive and limit the platform's geographic
+scalability), AI generation allows the content layer to scale
+with the POI database.
+ 
+The key challenge that the implementation addresses is
+\textit{prompt engineering for content reliability}: ensuring that
+the model produces questions that are factually grounded,
+appropriately difficult, and correctly formatted for the
+application's trivia interface~\cite{gravitee2026llmapi}.
+The offline limitation of cloud-based LLM calls is also relevant
+here: trivia content cannot be generated without network
+connectivity, which amplifies the importance of the offline-first
+caching capability currently in the backlog.
+
+ 
+\subsubsection{Summary}\label{subsub:contrast:summary}
+ 
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} >{\centering\arraybackslash}m{3.2cm}
+                    >{\centering\arraybackslash}m{5.8cm}
+                    >{\centering\arraybackslash}m{5.8cm} @{}}
+\toprule
+--
+\textbf{Dimension} & \textbf{Alignment} & \textbf{Gap} \\
+\midrule
+\midrule
+--
+Location-Based Features &
+  Real-time GPS trail interaction; physical presence as core
+  interaction primitive &
+  Offline-first capability regressed and moved to backlog \\
+\midrule
+--
+Gamification &
+  Points and achievement system tied to real POI activities;
+  hybrid reward loop &
+  No adaptive personalisation; uniform content for all users \\
+\midrule
+--
+LLM Content Generation &
+  Context-grounded prompting for POI trivia; scalable content
+  without pre-authoring &
+  Cloud-only LLM calls require connectivity; no offline
+  content fallback \\
+\bottomrule
+\end{tabular}
+\caption{Alignment of internship practices with the state of the art.}
+\label{tab:contrast}
+\end{table}
+ 
+\noindent
+Overall, the internship project demonstrates a strong alignment
+with current best practices in location-based mobile application
+development, gamified engagement design, and AI-assisted content
+generation.
+The gaps identified, most notably the offline-first regression, are operational rather than conceptual, and represent natural priorities as the platform moves toward a production release. 

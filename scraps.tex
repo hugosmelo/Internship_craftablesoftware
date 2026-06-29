@@ -1,0 +1,3 @@
+On the data model side, I added a \texttt{LeaderboardFilteredRequestDTO} to carry the trail ID, the current user's ID, and their friend list into the query cleanly, and extended \texttt{LeaderboardUserTimeDTO} with \texttt{Rank}, \texttt{IsCurrentUser}, and \texttt{IsFriend} fields so the frontend had everything it needed to render the list without any additional calls.
+
+I also took the opportunity to clean up a dependency issue I noticed in \texttt{UserServices}: it was injecting \texttt{IWalkServices} in a few places where it only actually needed the repository directly, which introduced an unnecessary service-to-service dependency. Swapping those calls to go directly through \texttt{IWalkRepository} simplified the dependency graph without changing any behaviour.
